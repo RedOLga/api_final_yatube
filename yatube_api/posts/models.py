@@ -19,12 +19,10 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="posts"
     )
-    image = models.ImageField(
-        upload_to="posts/", null=True, blank=True
-    )
+    image = models.ImageField(upload_to="posts/", null=True, blank=True)
     group = models.ForeignKey(
-        Group, on_delete=models.SET_NULL,
-        related_name="posts", blank=True, null=True
+        Group, on_delete=models.SET_NULL, related_name="posts",
+        blank=True, null=True
     )
 
     def __str__(self):
@@ -46,8 +44,8 @@ class Comment(models.Model):
 
 class Follow(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='followers'
+        User, on_delete=models.CASCADE, related_name="followers"
     )
     following = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='following'
+        User, on_delete=models.CASCADE, related_name="following"
     )
