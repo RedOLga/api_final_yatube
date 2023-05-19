@@ -39,14 +39,15 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, post=post)
 
 
-class GroupViewSet(viewsets.ReadOnlyModelViewSet, ObtainAuthToken):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsAuthorOrReadOnly,
+    )
 
-    def create(self, request, *args, **kwargs):
-        raise MethodNotAllowed(request.method)
-
-
+ 
 class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
