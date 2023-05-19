@@ -1,8 +1,6 @@
 from django.shortcuts import get_object_or_404
 from posts.models import Group, Post
 from rest_framework import filters, permissions, viewsets
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.pagination import LimitOffsetPagination
 
 from .permissions import IsAuthorOrReadOnly
@@ -47,7 +45,7 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
         IsAuthorOrReadOnly,
     )
 
- 
+
 class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
