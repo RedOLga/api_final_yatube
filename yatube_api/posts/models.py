@@ -9,7 +9,7 @@ class Group(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
-    def __str__(self):
+    def str(self):
         return self.title
 
 
@@ -25,7 +25,7 @@ class Post(models.Model):
         blank=True, null=True
     )
 
-    def __str__(self):
+    def str(self):
         return self.text
 
 
@@ -56,4 +56,3 @@ class Follow(models.Model):
                 fields=['user', 'following'], name='unique_following'
             ),
         )
-    
